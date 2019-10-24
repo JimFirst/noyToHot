@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "mpvue": "^2.0.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "wx-server-sdk": "^1.5.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

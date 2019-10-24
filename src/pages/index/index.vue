@@ -1,9 +1,9 @@
 <template>
   <div>
     我是首页
-    <img v-if="domain" :src="domain+'advantagefour.png'" alt="" srcset="">
     <button @click="test">分页获取列表</button>
     <button @click="add">添加列表</button>
+    <button @click="cloud">云函数测试</button>
     <button v-if="canIUse" open-type="getUserInfo">授权登录</button>
     <view v-else>请升级微信版本</view>
     <div>
@@ -27,13 +27,12 @@
 export default {
   data () {
     return {
-      domain: '',
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
       messageList: ''
     }
   },
   created () {
-    this.domain = this.$domain
+    this.test()
   },
   methods: {
     test() {
@@ -53,16 +52,33 @@ export default {
       }
       this.$http.message.addMessage(data).then(res => {
         console.log(res)
+        this.test()
       })
     },
     del(id) {
-      this.$http.message.delMessage(id).then(res => {
-        wx.showToast({
-          title: '删除成功',
-          icon: 'success',
-          duration: 2000
-        })
+      // this.$http.message.delMessage(id).then(res => {
+      //   wx.showToast({
+      //     title: '删除成功',
+      //     icon: 'success',
+      //     duration: 2000
+      //   })
+      //   this.test()
+      // })
+      wx.cloud.callFunction({
+        name: 'editMessage',
+        data: {
+          id: id
+        }
+      }).then(res => {
+        console.log('callFunction test result: ', res)
         this.test()
+      })
+    },
+    cloud() {
+      wx.cloud.callFunction({
+        name: 'editMessage'
+      }).then(res => {
+        console.log('callFunction test result: ', res)
       })
     },
     authorization() {
