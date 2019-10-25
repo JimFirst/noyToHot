@@ -1,10 +1,9 @@
 <template>
   <div>
     我是首页
-    <button @click="test">分页获取列表</button>
-    <button @click="add">添加列表</button>
-    <button @click="cloud">云函数测试</button>
-    <button v-if="canIUse" open-type="getUserInfo">授权登录</button>
+    <button @click="getList">分页获取列表</button>
+    <button @click="add" type="primary" :loading="btnLoading">添加列表</button>
+    <button v-if="canIUse" open-type="getUserInfo" @getuserinfo="login">授权登录</button>
     <view v-else>请升级微信版本</view>
     <div>
       <div>
@@ -28,14 +27,18 @@ export default {
   data () {
     return {
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      messageList: ''
+      messageList: '',
+      btnLoading: false
     }
   },
   created () {
-    this.test()
+    this.getList()
   },
   methods: {
-    test() {
+    login(val) {
+      console.log(val)
+    },
+    getList() {
       const data = {
         page: 1,
         size: 10
@@ -50,35 +53,25 @@ export default {
         user: 'dsd',
         info: '我是留言'
       }
+      this.btnLoading = true
       this.$http.message.addMessage(data).then(res => {
-        console.log(res)
-        this.test()
+        this.btnLoading = false
+        wx.showToast({
+          title: '留言成功',
+          icon: 'success'
+        })
+        this.getList()
       })
     },
     del(id) {
-      // this.$http.message.delMessage(id).then(res => {
-      //   wx.showToast({
-      //     title: '删除成功',
-      //     icon: 'success',
-      //     duration: 2000
-      //   })
-      //   this.test()
-      // })
       wx.cloud.callFunction({
         name: 'editMessage',
         data: {
-          id: id
+          id: id,
+          type: 'del'
         }
       }).then(res => {
-        console.log('callFunction test result: ', res)
-        this.test()
-      })
-    },
-    cloud() {
-      wx.cloud.callFunction({
-        name: 'editMessage'
-      }).then(res => {
-        console.log('callFunction test result: ', res)
+        this.getList()
       })
     },
     authorization() {

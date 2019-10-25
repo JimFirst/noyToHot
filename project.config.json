@@ -9,12 +9,14 @@
 		"autoAudits": false,
 		"uglifyFileName": true
 	},
-	"cloudfunctionRoot": "./src/cloudFunctions/",
+	"cloudfunctionRoot": "src/cloudFunctions/",
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wx1926f49e9f36d5b1",
 	"projectname": "mini",
 	"libVersion": "2.9.0",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
