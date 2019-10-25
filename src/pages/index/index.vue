@@ -5,7 +5,7 @@
     <button @click="add" type="primary" :loading="btnLoading">添加列表</button>
     <button v-if="canIUse" open-type="getUserInfo" @getuserinfo="login">授权登录</button>
     <view v-else>请升级微信版本</view>
-    <div>
+    <div class="test">
       <div>
         留言列表
       </div>
@@ -92,5 +92,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.test {
+  color: $red;
+}
 </style>

@@ -3,6 +3,7 @@ import App from './App'
 import './database/index'
 // 封装云开发数据库
 import db from './database'
+import './style/index.scss'
 Vue.prototype.$http = db
 
 import global from './utils/global'
