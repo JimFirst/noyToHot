@@ -1,4 +1,4 @@
-import db from './db'
+import db from '../database/db'
 export default {
   // params(Object) page,size
   async getMessageList(params) {

@@ -44,7 +44,6 @@ export default {
         size: 10
       }
       this.$http.message.getMessageList(data).then(res => {
-        console.log(111, res)
         this.messageList = res.data
       })
     },
@@ -64,13 +63,11 @@ export default {
       })
     },
     del(id) {
-      wx.cloud.callFunction({
-        name: 'editMessage',
-        data: {
-          id: id,
-          type: 'del'
-        }
-      }).then(res => {
+      const data = {
+        id: id,
+        type: 'del'
+      }
+      this.$http.cloud.editMessage(data).then(res => {
         this.getList()
       })
     },

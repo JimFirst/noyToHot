@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import App from './App'
-import './database/index'
 // 封装云开发数据库
-import db from './database'
+import api from './api'
 import './style/index.scss'
-Vue.prototype.$http = db
+Vue.prototype.$http = api
 
 import global from './utils/global'
 Vue.prototype.$domain = global.domain
