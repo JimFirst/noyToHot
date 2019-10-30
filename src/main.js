@@ -5,8 +5,10 @@ import api from './api'
 import './style/index.scss'
 Vue.prototype.$http = api
 
-import global from './utils/global'
-Vue.prototype.$domain = global.domain
+// 自定义全局组件
+import DCell from './components/DCell.vue'
+Vue.component('DCell', DCell)
+
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue(App)

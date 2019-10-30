@@ -1,7 +1,9 @@
 {
   "pages": [
+    "pages/about/main",
     "pages/index/main",
-    "pages/logs/main",
+    "pages/menus/main",
+    "pages/message/main",
     "pages/messageList/main"
   ],
   "window": {
@@ -22,8 +24,13 @@
       "iconPath": "static/tabs/home.png",
       "selectedIconPath": "static/tabs/home-active.png"
     }, {
-      "text": "订单",
-      "pagePath": "pages/logs/main",
+      "text": "菜单",
+      "pagePath": "pages/menus/main",
+      "iconPath": "static/tabs/orders.png",
+      "selectedIconPath": "static/tabs/orders-active.png"
+    }, {
+      "text": "关于我们",
+      "pagePath": "pages/about/main",
       "iconPath": "static/tabs/orders.png",
       "selectedIconPath": "static/tabs/orders-active.png"
     }],

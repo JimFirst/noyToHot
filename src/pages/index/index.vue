@@ -1,6 +1,9 @@
 <template>
-  <div>
+  <div class="page">
     我是首页
+    <navigator url="../messageList/main">跳转留言列表</navigator>
+    <icon type="success"/>
+    <progress percent="20" show-info />
     <button @click="getList">分页获取列表</button>
     <button @click="add" type="primary" :loading="btnLoading">添加列表</button>
     <button v-if="canIUse" open-type="getUserInfo" @getuserinfo="login">授权登录</button>
@@ -68,6 +71,10 @@ export default {
         type: 'del'
       }
       this.$http.cloud.editMessage(data).then(res => {
+        wx.showToast({
+          title: '删除成功',
+          icon: 'success'
+        })
         this.getList()
       })
     },
@@ -91,6 +98,6 @@ export default {
 
 <style lang="scss">
 .test {
-  color: $red;
+  color: $primary-font;
 }
 </style>
