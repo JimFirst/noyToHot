@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/about/main",
+    "pages/messageList/main",
     "pages/index/main",
-    "pages/menus/main",
     "pages/message/main",
-    "pages/messageList/main"
+    "pages/menus/main",
+    "pages/about/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

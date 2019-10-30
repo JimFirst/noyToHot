@@ -7,7 +7,9 @@ Vue.prototype.$http = api
 
 // 自定义全局组件
 import DCell from './components/DCell.vue'
+import DButton from './components/DButton.vue'
 Vue.component('DCell', DCell)
+Vue.component('DButton', DButton)
 
 Vue.config.productionTip = false
 App.mpType = 'app'

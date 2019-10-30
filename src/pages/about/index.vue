@@ -17,15 +17,16 @@
       title="电话"
       content="18768563852"
     ></d-cell>
-    <button open-type="contact">联系客服</button>
     <div class="about-link">
       <div>
-        <img src="/static/images/woker_link.jpg">
+        <img @click="previewImg" src="cloud://online-e18550.6f6e-online-e18550-1300491148/images/woker_link.jpg">
       </div>
       <div class="about-link-title">
-        联系我们
+        扫一扫添加我们
       </div>
     </div>
+    <button @click="toMessage">留言列表</button>
+    <button type="primary" open-type="contact">联系客服</button>
   </div>
 </template>
 
@@ -44,7 +45,19 @@ export default {
       ]
     };
   },
-  created() {}
+  methods: {
+    previewImg() {
+      wx.previewImage({
+        current: 'cloud://online-e18550.6f6e-online-e18550-1300491148/images/woker_link.jpg', 
+        urls: ['cloud://online-e18550.6f6e-online-e18550-1300491148/images/woker_link.jpg']
+      })
+    },
+    toMessage() {
+      wx.navigateTo({
+        url: '../messageList/main'
+      })
+    }
+  },
 };
 </script>
 
@@ -52,7 +65,7 @@ export default {
 .about {
   &-link {
     text-align: center;
-    margin-top: 30rpx;
+    margin: 30rpx 0;
     img {
       width: 240rpx;
       height: 240rpx;
