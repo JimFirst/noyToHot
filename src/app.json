@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/messageList/main",
     "pages/index/main",
+    "pages/messageList/main",
     "pages/message/main",
     "pages/menus/main",
     "pages/about/main"

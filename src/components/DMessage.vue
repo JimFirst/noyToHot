@@ -13,7 +13,7 @@
         </span>
       </div>
     </div>
-    <div class="d-message-right">
+    <div class="d-message-right" v-if="toolbar">
       <button v-show="!info.show" type="primary" size="mini" @click="show">展示</button>
       <button v-show="info.show" size="mini" @click="hide">隐藏</button>
       <button type="warn" @click="del" size="mini">删除</button>
@@ -25,7 +25,15 @@
 <script>
 export default {
   name: 'DMessage',
-  props: ['info'],
+  props: {
+    info: {
+      type: Object
+    },
+    toolbar: {
+      type: Object,
+      default: false
+    }
+  },
   methods: {
     del() {
       this.$emit('del')
@@ -58,6 +66,7 @@ export default {
     &-info {
       font-size: $font-size-s;
       color: $sup-font;
+      word-break: break-all;
     }
   }
   &-right {

@@ -1,6 +1,6 @@
 <template>
   <div class="page message">
-    <textarea rows="10" class="textarea" autofocus v-model="info" placeholder="请输入您的评价" />
+    <textarea rows="10" maxlength="100" class="textarea" autofocus v-model.trim="info" placeholder="请输入您的评价" />
     <button class="message-btn" :loading="btnLoading" type="primary" @click="add" :disabled="!info">提交评价</button>
   </div>
 </template>
@@ -14,8 +14,8 @@ export default {
       info: ''
     }
   },
-  created () {
-    
+  onLoad() {
+    this.info = ''
   },
   methods: {
     add() {

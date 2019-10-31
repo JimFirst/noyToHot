@@ -10,6 +10,10 @@
       style="width: 100%; height: 300px;"
     ></map>
     <d-cell
+      title="店名"
+      content="Not Too Hot工作室"
+    ></d-cell>
+    <d-cell
       title="地址"
       content="中大银泰城7号楼1604"
     ></d-cell>
@@ -21,11 +25,11 @@
       <div>
         <img @click="previewImg" src="cloud://online-e18550.6f6e-online-e18550-1300491148/images/woker_link.jpg">
       </div>
-      <div class="about-link-title">
+      <div @longpress="longpress" class="about-link-title">
         扫一扫添加我们
       </div>
     </div>
-    <button @click="toMessage">留言列表</button>
+    <button v-show="showBtn" @click="toMessage">留言列表</button>
     <button type="primary" open-type="contact">联系客服</button>
   </div>
 </template>
@@ -42,7 +46,8 @@ export default {
           width: 50,
           height: 50
         }
-      ]
+      ],
+      showBtn: false
     };
   },
   methods: {
@@ -56,6 +61,9 @@ export default {
       wx.navigateTo({
         url: '../messageList/main'
       })
+    },
+    longpress() {
+      this.showBtn = !this.showBtn
     }
   },
 };
