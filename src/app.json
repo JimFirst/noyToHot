@@ -4,6 +4,7 @@
     "pages/messageList/main",
     "pages/message/main",
     "pages/menus/main",
+    "pages/product/main",
     "pages/about/main"
   ],
   "window": {
@@ -21,18 +22,18 @@
     "list": [{
       "text": "首页",
       "pagePath": "pages/index/main",
-      "iconPath": "static/tabs/home.png",
-      "selectedIconPath": "static/tabs/home-active.png"
+      "iconPath": "static/tabs/ic_sy_nor.png",
+      "selectedIconPath": "static/tabs/ic_sy_pre.png"
     }, {
       "text": "菜单",
       "pagePath": "pages/menus/main",
-      "iconPath": "static/tabs/orders.png",
-      "selectedIconPath": "static/tabs/orders-active.png"
+      "iconPath": "static/tabs/ic_cd_nor.png",
+      "selectedIconPath": "static/tabs/ic_cd_pre.png"
     }, {
       "text": "关于我们",
       "pagePath": "pages/about/main",
-      "iconPath": "static/tabs/orders.png",
-      "selectedIconPath": "static/tabs/orders-active.png"
+      "iconPath": "static/tabs/ic_gywm_nor.png",
+      "selectedIconPath": "static/tabs/ic_gywm_pre.png"
     }],
     "position": "bottom"
   }

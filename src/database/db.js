@@ -14,8 +14,8 @@ export default {
     return db.collection(name).count()
   },
   // 获取分页
-  getPage(name, data) {
-    return db.collection(name).skip((data.page - 1) *data.size).limit(data.size).get()
+  getPage(name, data, search = {}) {
+    return db.collection(name).where(search).skip((data.page - 1) *data.size).limit(data.size).get()
   },
   // 增
   add(name, data) {

@@ -30,6 +30,7 @@
       </div>
     </div>
     <button v-show="showBtn" @click="toMessage">留言列表</button>
+    <button v-show="showBtn" @click="toAddProduct">添加产品</button>
     <button type="primary" open-type="contact">联系客服</button>
   </div>
 </template>
@@ -47,7 +48,7 @@ export default {
           height: 50
         }
       ],
-      showBtn: false
+      showBtn: true
     };
   },
   methods: {
@@ -61,6 +62,11 @@ export default {
       wx.navigateTo({
         url: '../messageList/main'
       })
+    },
+    toAddProduct() {
+      wx.navigateTo(({
+        url: '../product/main'
+      }))
     },
     longpress() {
       this.showBtn = !this.showBtn

@@ -4,7 +4,10 @@
       {{title}}
     </div>
     <div class="d-cell-content">
-      {{content}}
+      <span v-if="content">
+        {{content}}
+      </span>
+      <slot></slot>
     </div>
   </div>
 </template>
