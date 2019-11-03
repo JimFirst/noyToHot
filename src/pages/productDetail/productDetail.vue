@@ -7,30 +7,51 @@
       </swiper-item>
     </swiper>
     <div class="page">
-      <div>
+      <div class="title">
         {{productInfo.name}}
       </div>
-      <div>
-        <span>价格：</span>
-        <span></span>
+      <div class="title" v-if="productInfo.remark">
+        <span>规格：</span>
+        <span>
+          {{productInfo.remark}}
+        </span>
       </div>
-      <div>
-        <span>食材新鲜</span>
-        <span>现订现做</span>
-        <span>24小时接受预定</span>
+      <div class="title" style="font-size: 28rpx;" v-if="productInfo.price">
+        <span>价格：</span>
+        <span class="price">{{'￥'+productInfo.price + '/' + productInfo.unit}}</span>
+      </div>
+      <div class="product-detail-sup">
+        <div>
+          <icon type="success" :size="14"/>
+          <span>食材新鲜</span>
+        </div>
+        <div>
+          <icon type="success" :size="14"/>
+          <span>现订现做</span>
+        </div>
+        <div>
+          <icon type="success" :size="14"/>
+          <span>24小时接受预定</span>
+        </div>
       </div>
       <div>
         <d-tab :tabs="tabs" @change="tabChange"></d-tab>
-        <div v-show="activeTab === 'detail'">
-
+        <div v-show="activeTab === 'detail'" class="product-detail-tab">
+          <div style="margin-bottom: 30rpx;">
+            {{productInfo.desc}}
+          </div>
+          <button type="primary" open-type="contact">联系客服</button>
         </div>
-        <div v-show="activeTab === 'evaluate'">
-          <d-button :keyboard="productInfo._id" :type="productInfo.type"></d-button>
+        <div v-show="activeTab === 'evaluate'" class="product-detail-tab">
+          <div v-if="messageList.length === 0"  class="product-detail-tab-empty">
+            暂无评价，赶紧第一个评价吧！
+          </div>
           <d-message
             v-for="(item, index) in messageList"
             :key="index"
             :info="item"
           ></d-message>
+          <d-button :keyboard="productInfo._id" :type="productInfo.type"></d-button>
         </div>
       </div>
     </div>
@@ -45,11 +66,12 @@ export default {
   data() {
     return {
       productInfo: {
-        name: ''
+        name: '',
+        remark: ''
       },
       imgs: [],
       tabs: [{
-        name: '商品详情',
+        name: '商品描述',
         key: 'detail'
       }, {
         name: '评价',
@@ -74,7 +96,6 @@ export default {
         wx.hideLoading()
         this.productInfo = res.data
         this.imgs = res.data.imgs
-        console.log(111, res)
       })
     },
     tabChange(val) {
@@ -86,7 +107,7 @@ export default {
         size: 20
       }
       const search = {
-        show: false,
+        show: true,
         key: id
       }
       this.$http.message.getMessageList(params, search).then(res => {
@@ -114,6 +135,30 @@ export default {
   image {
     width: 100%;
     height: 600rpx;
+  }
+  &-sup {
+    font-size: $font-size-s;
+    display: flex;
+    justify-content: space-around;
+    margin: 20rpx 0;
+    color: $primary-font;
+    line-height: 42rpx;
+  }
+  &-tab {
+    padding: 20rpx 0;
+    font-size: $font-size-s;
+    color: $primary-font;
+    line-height: 42rpx;
+    .d-button {
+      margin-top: 20rpx;
+    }
+    &-empty {
+      height: 100rpx;
+      text-align: center;
+      line-height: 100rpx;
+      font-size: $font-size-s;
+      color: $sup-font;
+    }
   }
 }
 </style>

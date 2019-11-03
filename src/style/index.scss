@@ -13,3 +13,13 @@
 input {
   border: $border;
 }
+.title {
+  font-size: $font-size-m;
+  color: $primary-font;
+  line-height: 48rpx;
+}
+.price {
+  font-size: $font-size-s;
+  color: $pink;
+  line-height: 42rpx;
+}

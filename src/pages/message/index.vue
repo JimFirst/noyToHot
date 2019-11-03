@@ -16,7 +16,6 @@ export default {
     }
   },
   onLoad(option) {
-    console.log(option)
     this.info = ''
     this.option = option
   },
@@ -36,7 +35,7 @@ export default {
           that.$http.message.addMessage(data).then(res => {
             that.btnLoading = false
             wx.showToast({
-              title: '评价成功',
+              title: '评价成功,感谢您的评价！',
               icon: 'success'
             })
             setTimeout(() => {

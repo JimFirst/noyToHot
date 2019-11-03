@@ -1,6 +1,8 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-cloud.init()
+cloud.init({
+  env: 'online-e18550'
+})
 const db = cloud.database()
 // params(Object) id type params
 exports.main = async (event, context) => {

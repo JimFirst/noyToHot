@@ -16,6 +16,7 @@
         :src="item.cakeList"
         :name="item.name"
         :price="item.price"
+        @click="toDetail(item)"
       ></d-card>
     </div>
     <div class="menus-main" v-show="activeTab === 'dessert'">
@@ -24,6 +25,7 @@
         :src="item.cover"
         :name="item.name"
         :price="item.price"
+        @click="toDetail(item)"
       ></d-card>
     </div>
     <div class="menus-main" v-show="activeTab === 'dessertStation'">
@@ -32,6 +34,7 @@
         :src="item.cover"
         :name="item.name"
         :price="item.price"
+        @click="toDetail(item)"
       ></d-card>
     </div>
   </div>
@@ -63,9 +66,8 @@ export default {
     }
   },
   onLoad() {
+    Object.assign(this, this.$options.data())
     this.getProductList('cookie')
-  },
-  onShow() {
   },
   methods: {
     getProductList(type) {
