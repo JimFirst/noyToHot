@@ -11,11 +11,14 @@ export default {
   data () {
     return {
       btnLoading: false,
-      info: ''
+      info: '',
+      option: ''
     }
   },
-  onLoad() {
+  onLoad(option) {
+    console.log(option)
     this.info = ''
+    this.option = option
   },
   methods: {
     add() {
@@ -26,7 +29,8 @@ export default {
           const data = {
             ...res.data,
             info: that.info,
-            show: false
+            show: false,
+            ...that.option
           }
           that.btnLoading = true
           that.$http.message.addMessage(data).then(res => {

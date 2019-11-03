@@ -11,7 +11,9 @@ export default {
   props: {
     text: {
       default: '评价'
-    }
+    },
+    keyboard: {},
+    type: ''
   },
   data() {
     return {
@@ -48,7 +50,7 @@ export default {
     },
     btnClick() {
       wx.navigateTo({
-        url: '../message/main'
+        url: '../message/main?key='+this.keyboard+'&type=' +this.type
       })
       this.$emit('click')
     }

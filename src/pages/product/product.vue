@@ -12,8 +12,14 @@
     <d-cell title="描述">
       <input type="text" v-model="productInfo.desc">
     </d-cell>
+    <d-cell title="单位">
+      <input type="text" v-model="productInfo.unit">
+    </d-cell>
     <d-cell title="类别">
       <input type="text" v-model="productInfo.type">
+    </d-cell>
+    <d-cell title="类别">
+      <input type="text" v-model="productInfo.remark">
     </d-cell>
     <button :loading="loading" @click="addProduct">添加</button>
   </div>
@@ -30,9 +36,10 @@ export default {
         imgs: [],
         name: '',
         price: 0,
-        type: 'cookie',
+        type: 'dessert',
         unit: '盒',
-        stick: false
+        stick: false,
+        remark: ''
       },
       loading: false
     }

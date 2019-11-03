@@ -1,9 +1,9 @@
 import db from '../database/db'
 export default {
   // params(Object) page,size
-  async getMessageList(params) {
-    const { total } = await db.count('message')
-    const { data } = await db.getPage('message', params)
+  async getMessageList(params, search) {
+    const { total } = await db.count('message', search)
+    const { data } = await db.getPage('message', params, search)
     return {
       total,
       data

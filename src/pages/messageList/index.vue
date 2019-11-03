@@ -3,9 +3,9 @@
     <d-message
       v-for="(item, index) in messageList"
       :toolbar="true"
-      @del="del(item._id)"
-      @show="showOrHide(item._id, true)"
-      @hide="showOrHide(item._id, false)"
+      @del="del(item._id, index)"
+      @show="showOrHide(item._id, true, index)"
+      @hide="showOrHide(item._id, false, index)"
       :key="index"
       :info="item"
     ></d-message>
@@ -23,6 +23,7 @@ export default {
     };
   },
   onLoad() {
+    Object.assign(this, this.$options.data())
     this.getList();
   },
   methods: {
@@ -37,11 +38,13 @@ export default {
       this.$http.message.getMessageList(data).then(res => {
         this.total = res.total;
         wx.hideLoading();
-        wx.stopPullDownRefresh();
-        this.messageList = res.data;
+        this.messageList = [
+          ...this.messageList,
+          ...res.data
+        ]
       });
     },
-    del(id) {
+    del(id, index) {
       const data = {
         id: id,
         type: "del"
@@ -55,11 +58,10 @@ export default {
           title: "删除成功",
           icon: "success"
         });
-        this.page = 1;
-        this.getList();
+        this.messageList.splice(index, 1)
       });
     },
-    showOrHide(id, show) {
+    showOrHide(id, show, index) {
       const data = {
         id: id,
         type: "edit",
@@ -72,7 +74,7 @@ export default {
           title: "修改成功",
           icon: "success"
         });
-        this.getList();
+        this.messageList[index].show = show
       });
     }
   },
@@ -80,13 +82,6 @@ export default {
   onReachBottom: function() {
     if (this.total / 10 > this.page) {
       this.page = this.page + 1;
-      this.getList();
-    }
-  },
-  // 上一页
-  onPullDownRefresh: function() {
-    if (this.page > 1) {
-      this.page = this.page - 1;
       this.getList();
     }
   },

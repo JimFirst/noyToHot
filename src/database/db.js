@@ -10,8 +10,8 @@ const db = wx.cloud.database({
 
 export default {
   // 获取列表总数
-  count(name) {
-    return db.collection(name).count()
+  count(name, search = {}) {
+    return db.collection(name).where(search).count()
   },
   // 获取分页
   getPage(name, data, search = {}) {
@@ -32,5 +32,8 @@ export default {
   // 删
   del(name, id) {
     return db.collection(name).doc(id).remove()
+  },
+  getDetail(name, id) {
+    return db.collection(name).doc(id).get()
   } 
 }

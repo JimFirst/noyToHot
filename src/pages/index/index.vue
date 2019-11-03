@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     我是首页
-    <d-button></d-button>
+    
   </div>
 </template>
 
@@ -14,9 +14,7 @@ export default {
     }
   },
   methods: {
-    login(val) {
-      console.log(val)
-    }
+    
   }
 }
 </script>

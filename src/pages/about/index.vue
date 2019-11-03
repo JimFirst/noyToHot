@@ -11,7 +11,7 @@
     ></map>
     <d-cell
       title="店名"
-      content="Not Too Hot工作室"
+      content="not too hot工作室"
     ></d-cell>
     <d-cell
       title="地址"

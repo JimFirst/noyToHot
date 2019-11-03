@@ -2,7 +2,7 @@ import db from '../database/db'
 export default {
   // params(Object) page,size
   async getProductList(params, search) {
-    const { total } = await db.count('product')
+    const { total } = await db.count('product', search)
     const { data } = await db.getPage('product', params, search)
     return {
       total,
@@ -15,5 +15,8 @@ export default {
   },
   async delProduct(id) {
     return db.del('product', id)
+  },
+  async getProductDetail(id) {
+    return db.getDetail('product', id)
   }
 }

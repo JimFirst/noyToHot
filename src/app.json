@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/productDetail/main",
     "pages/messageList/main",
     "pages/message/main",
     "pages/menus/main",

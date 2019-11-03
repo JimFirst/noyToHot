@@ -21,6 +21,9 @@ export default {
       activeTab: 0
     }
   },
+  onLoad() {
+    this.activeTab = 0
+  },
   methods: {
     clickTab(index, key) {
       this.activeTab = index

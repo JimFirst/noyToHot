@@ -1,9 +1,34 @@
 <template>
   <div class="page menus">
     <d-tab :tabs="tabs" @change="tabChange"></d-tab>
-    <div class="menus-main">
+    <div class="menus-main" v-show="activeTab === 'cookie'">
       <d-card
         v-for="(item, index) in cookieList" :key="index"
+        :src="item.cover"
+        :name="item.name"
+        :price="item.price"
+        @click="toDetail(item)"
+      ></d-card>
+    </div>
+    <div class="menus-main" v-show="activeTab === 'cake'">
+      <d-card
+        v-for="(item, index) in cakeList" :key="index"
+        :src="item.cakeList"
+        :name="item.name"
+        :price="item.price"
+      ></d-card>
+    </div>
+    <div class="menus-main" v-show="activeTab === 'dessert'">
+      <d-card
+        v-for="(item, index) in dessertList" :key="index"
+        :src="item.cover"
+        :name="item.name"
+        :price="item.price"
+      ></d-card>
+    </div>
+    <div class="menus-main" v-show="activeTab === 'dessertStation'">
+      <d-card
+        v-for="(item, index) in dessertStationList" :key="index"
         :src="item.cover"
         :name="item.name"
         :price="item.price"
@@ -18,6 +43,9 @@ export default {
   data () {
     return {
       cookieList: [],
+      cakeList: [],
+      dessertList: [],
+      dessertStationList: [],
       tabs: [{
         name: '饼干',
         key: 'cookie'
@@ -30,29 +58,39 @@ export default {
       }, {
         name: '甜品台',
         key: 'dessertStation'
-      }]
+      }],
+      activeTab: 'cookie'
     }
   },
   onLoad() {
-    this.getProductList()
+    this.getProductList('cookie')
   },
   onShow() {
   },
   methods: {
-    getProductList() {
+    getProductList(type) {
+      if (this[`${type}List`].length > 0) {
+        return
+      }
       const params = {
         page: 1,
         size: 20
       }
       const search = {
-        type: 'cookie'
+        type: type
       }
       this.$http.product.getProductList(params, search).then(res => {
-        this.cookieList = res.data
+        this[`${type}List`] = res.data
       })
     },
     tabChange(val) {
-      console.log(val)
+      this.activeTab = val
+      this.getProductList(val)
+    },
+    toDetail(item) {
+      wx.navigateTo(({
+        url: '../productDetail/main?id='+item._id
+      }))
     }
   },
   components: {

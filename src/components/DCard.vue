@@ -1,12 +1,12 @@
 <template>
-	<div class="d-card">
+	<div class="d-card" @click="click">
 		<div class="d-card-pic">
-			<image :src="src" alt="图片" mode="scaleToFill" />
+			<image :src="src" alt="图片" mode="aspectFill" />
 		</div>
 		<div class="d-card-name">
 			{{name}}
 		</div>
-		<div class="d-card-price">
+		<div v-if="price" class="d-card-price">
 			{{'￥' + price}}
 		</div>
 	</div>
@@ -27,7 +27,12 @@ export default {
 		price: {
 			required: false
 		}
-	}
+	},
+	methods: {
+		click() {
+			this.$emit('click')
+		},
+	},
 };
 </script>
 
@@ -35,6 +40,7 @@ export default {
 .d-card {
 	padding: 10rpx;
 	box-sizing: border-box;
+	margin-bottom: 20rpx;
 	&-pic {
 		image {
 			width: 100%;
