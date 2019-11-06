@@ -18,7 +18,10 @@
     <d-cell title="类别">
       <input type="text" v-model="productInfo.type">
     </d-cell>
-    <d-cell title="类别">
+    <d-cell title="封面">
+      <input type="text" v-model="productInfo.cover">
+    </d-cell>
+    <d-cell title="规格">
       <input type="text" v-model="productInfo.remark">
     </d-cell>
     <button :loading="loading" @click="addProduct">添加</button>
@@ -36,12 +39,25 @@ export default {
         imgs: [],
         name: '',
         price: 0,
-        type: 'dessert',
+        type: 'cake',
         unit: '盒',
         stick: false,
         remark: ''
       },
-      loading: false
+      loading: false,
+      types: [{
+        name: '饼干',
+        value: 'cookie'
+      }, {
+        name: '蛋糕',
+        value: 'cake'
+      }, {
+        name: '甜品',
+        value: 'dessert'
+      }, {
+        name: '甜品台',
+        value: 'dessertStation'
+      },]
     }
   },
   methods: {

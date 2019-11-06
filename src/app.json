@@ -6,7 +6,8 @@
     "pages/message/main",
     "pages/menus/main",
     "pages/product/main",
-    "pages/about/main"
+    "pages/about/main",
+    "pages/productList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

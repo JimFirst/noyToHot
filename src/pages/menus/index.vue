@@ -13,7 +13,7 @@
     <div class="menus-main" v-show="activeTab === 'cake'">
       <d-card
         v-for="(item, index) in cakeList" :key="index"
-        :src="item.cakeList"
+        :src="item.cover"
         :name="item.name"
         :price="item.price"
         @click="toDetail(item)"
@@ -49,6 +49,11 @@ export default {
       cakeList: [],
       dessertList: [],
       dessertStationList: [],
+      cookieTotal: 1,
+      cakeTotal: 1,
+      dessertTotal: 1,
+      dessertStationTotal: 1,
+      page: 1,
       tabs: [{
         name: '饼干',
         key: 'cookie'
@@ -71,21 +76,26 @@ export default {
   },
   methods: {
     getProductList(type) {
-      if (this[`${type}List`].length > 0) {
+      if (this[`${type}List`].length  === this[`${type}Total`]) {
         return
       }
       const params = {
-        page: 1,
-        size: 20
+        page: this.page,
+        size: 10
       }
       const search = {
         type: type
       }
       this.$http.product.getProductList(params, search).then(res => {
-        this[`${type}List`] = res.data
+        this[`${type}Total`] = res.total
+        this[`${type}List`] = [
+          ...this[`${type}List`],
+          ...res.data
+        ]
       })
     },
     tabChange(val) {
+      this.page = 1
       this.activeTab = val
       this.getProductList(val)
     },
@@ -93,6 +103,13 @@ export default {
       wx.navigateTo(({
         url: '../productDetail/main?id='+item._id
       }))
+    }
+  },
+  // 下拉下一页
+  onReachBottom: function() {
+    if (this[`${this.activeTab}Total`] / 10 > this.page) {
+      this.page = this.page + 1;
+      this.getProductList(this.activeTab)
     }
   },
   components: {

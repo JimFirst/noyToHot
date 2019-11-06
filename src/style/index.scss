@@ -23,3 +23,7 @@ input {
   color: $pink;
   line-height: 42rpx;
 }
+
+._button[type=primary] {
+  background: rgba($color: $pink, $alpha: 0.8);
+}

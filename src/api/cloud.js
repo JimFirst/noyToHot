@@ -5,5 +5,17 @@ export default {
       name: 'editMessage',
       data: data
     })
+  },
+  async editProduct(data) {
+    return wx.cloud.callFunction({
+      name: 'editProduct',
+      data: data
+    })
+  },
+  async login(data) {
+    return wx.cloud.callFunction({
+      name: 'isManager',
+      data: data
+    })
   }
 }
